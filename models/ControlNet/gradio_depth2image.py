@@ -24,11 +24,11 @@ from models.ControlNet.ldm.models.diffusion.ddim import DDIMSampler
 
 
 def init_model():
-    model = create_model(BASE_DIR+'/models/cldm_v15.yaml').cpu()
+    model = create_model(BASE_DIR+'/models/cldm_v15.yaml').cuda()
     state_dict = load_state_dict(BASE_DIR+'/models/control_sd15_depth.pth')
     model.load_state_dict(state_dict, strict=False)
     # model.load_state_dict(state_dict)
-    model = model.cuda()
+    # model = model.cuda()
     ddim_sampler = DDIMSampler(model)
 
     return model, ddim_sampler
